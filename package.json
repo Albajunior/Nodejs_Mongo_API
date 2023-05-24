@@ -1,0 +1,16 @@
+{
+  "name": "mongo_js_cloud_cours_project",
+  "version": "1.0.0",
+  "description": "First",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server"
+  },
+  "author": "Alba",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
