@@ -19,7 +19,17 @@ const userSchema = new mongoose.Schema({
       message: "Veuillez fournir une adresse e-mail valide",
     },
   },
-  password: { type: String, required: true },
+  password: { 
+    type: String, 
+    required: true,
+    validate: {
+        validator: function (password) {
+          // Utilisation d'une expression régulière pour valider le format del'adresse e-mail
+          const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+          return passwordRegex.test(password);
+        },
+        message: "Veuillez fournir une adresse e-mail valide",
+    }, },
 });
 
 // Apply the uniqueValidator plugin to userSchema.
