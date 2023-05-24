@@ -1,7 +1,7 @@
 // Import de Mongoose
 const mongoose = require("mongoose");
 
-// Création du schéma pour la collection "C"
+// Création du schéma pour la collection "Category"
 const categorySchema = new mongoose.Schema({
   name: {
     type: String,
@@ -21,5 +21,5 @@ const categorySchema = new mongoose.Schema({
   },
 });
 
-// Création du modèle pour la collection "utilisateurs"
+// Création du modèle pour la collection "category"
 const Category = mongoose.model(Category, categorySchema);

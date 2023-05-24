@@ -1,7 +1,7 @@
 // Import de Mongoose
 const mongoose = require("mongoose");
 
-// Création du schéma pour la collection "users"
+// Création du schéma pour la collection "compte"
 const compteSchema = new mongoose.Schema({
   bankName: { type: String, required: [true, "Required Field"] },
   customName: {
@@ -17,5 +17,5 @@ const compteSchema = new mongoose.Schema({
   },
 });
 
-// Création du modèle pour la collection "utilisateurs"
+// Création du modèle pour la collection "compte"
 const Compte = mongoose.model(Compte, compteSchema);
