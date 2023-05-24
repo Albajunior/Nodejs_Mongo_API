@@ -1,20 +1,23 @@
 // Import de Mongoose
 const mongoose = require("mongoose");
 
-// Création du schéma pour la collection "users"
+// Création du schéma pour la collection "C"
 const categorySchema = new mongoose.Schema({
   name: {
     type: String,
-    enum: [
-      "Healthcare",
-      "Transportation",
-      "Miscellaneous",
-      "Utilities",
-      "Food",
-      "Income",
-      "Shopping",
-    ],
-    required: true,
+    enum: {
+      values: [
+        "Healthcare",
+        "Transportation",
+        "Miscellaneous",
+        "Utilities",
+        "Food",
+        "Income",
+        "Shopping",
+      ],
+      message: "{VALUE} is not supported",
+    },
+    required: [true, "Required Field"],
   },
 });
 
