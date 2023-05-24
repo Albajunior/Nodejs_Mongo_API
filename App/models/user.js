@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
           const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
           return passwordRegex.test(password);
         },
-        message: "Veuillez fournir une adresse e-mail valide",
+        message: "Veuillez fournir un password valide",
     }, },
 });
 
