@@ -13,9 +13,10 @@ const compteSchema = new mongoose.Schema({
   user: {
     required: [true, "Required Field"],
     type: mongoose.Types.ObjectId,
-    $ref: "User",
+    ref: "User",
   },
 });
 
 // Création du modèle pour la collection "compte"
-const Compte = mongoose.model(Compte, compteSchema);
+const Compte = mongoose.model("Compte", compteSchema);
+module.exports = Compte;
