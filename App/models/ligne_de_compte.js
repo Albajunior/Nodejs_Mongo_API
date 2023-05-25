@@ -30,15 +30,16 @@ const lignecompteSchema = new mongoose.Schema({
   isChecked: { type: Boolean, required: true, default: false },
   category: {
     type: mongoose.Types.ObjectId,
-    $ref: "Category",
+    ref: "Category",
     required: [true, "why no Date"],
   },
   accountId: {
     type: mongoose.Types.ObjectId,
-    $ref: "Compte",
+    ref: "Compte",
     required: [true, "why no accountId"],
   },
 });
 
 // Création du modèle pour la collection "ligne de comptes"
-const Lignecompte = mongoose.model(Lignecompte, lignecompteSchema);
+const Lignecompte = mongoose.model("Lignecompte", lignecompteSchema);
+module.exports = Lignecompte;

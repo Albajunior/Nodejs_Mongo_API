@@ -2,10 +2,11 @@
 const mongoose = require("mongoose");
 //email unique
 var uniqueValidator = require("mongoose-unique-validator");
+const bcrypt = require("bcrypt");
 
 // Création du schéma pour la collection "users"
 const userSchema = new mongoose.Schema({
-  lastname: { type: String, required: true },
+  lastname: { type: String },
   email: {
     type: String,
     required: [true, "Required Field"],
@@ -37,5 +38,15 @@ const userSchema = new mongoose.Schema({
 // Apply the uniqueValidator plugin to userSchema.
 userSchema.plugin(uniqueValidator);
 
+//hashPassword
+ userSchema.pre('save', async function(next) {
+  if (this.isModified('password')) {
+   this.password = await bcrypt.hash(this.password, 10);
+  }
+  next();
+})
+
 // Création du modèle pour la collection "utilisateurs"
-const User = mongoose.model(User, userSchema);
+const User = mongoose.model("User", userSchema);
+
+module.exports = User;
