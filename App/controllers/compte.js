@@ -5,10 +5,7 @@ exports.createCompte = async (req, res) => {
     const payload = {
       bankName: req.body.bankName,
       customName: req.body.customName,
-<<<<<<< HEAD
       lastUpdated: Date.now(),
-=======
->>>>>>> 1a083cac99044ae92f27cdbcdb51613f98d408be
       user: req.auth.userId,
     };
     const compte = new Compte(payload);

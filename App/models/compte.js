@@ -1,5 +1,6 @@
 // Import de Mongoose
 const mongoose = require("mongoose");
+const Transaction = require("./transaction");
 
 // Création du schéma pour la collection "compte"
 const compteSchema = new mongoose.Schema({
@@ -28,6 +29,13 @@ compteSchema.pre('save', async function(next) {
 //Update Date
 compteSchema.pre('findOneAndUpdate', function(next) {
   this.set({ lastUpdated : Date.now() });
+  next();
+})
+
+
+//delete transaction
+compteSchema.pre('deleteOne', async function(next) {
+  await Transaction.deleteMany({ account: this._id})
   next();
 })
 
