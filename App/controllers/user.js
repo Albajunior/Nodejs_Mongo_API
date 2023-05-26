@@ -31,7 +31,7 @@ exports.login = async (req, res) => {
           console.log("login successful");
   
           const payload = {
-            userId: user.id,
+            id: user.id,
             email: user.email,
           };
   
