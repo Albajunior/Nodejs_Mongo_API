@@ -26,10 +26,8 @@ compteSchema.pre('save', async function(next) {
 })
 
 //Update Date
-compteSchema.pre('updateOne', async function(next) {
-  if (this.isModified('lastUpdated')) {
-   this.lastUpdated = Date.now();
-  }
+compteSchema.pre('findOneAndUpdate', function(next) {
+  this.set({ lastUpdated : Date.now() });
   next();
 })
 

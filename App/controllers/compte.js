@@ -5,7 +5,6 @@ exports.createCompte = async (req, res) => {
     const payload = {
       bankName: req.body.bankName,
       customName: req.body.customName,
-      lastUpdated: Date.now(),
       user: req.auth.userId,
     };
     const compte = new Compte(payload);
@@ -37,12 +36,42 @@ exports.deleteCompte = async (req, res) => {
     } else {
       if (compte.user === req.auth.userId) {
         await compte.deleteOne({ _id: compteId });
-        res.status(204).json({ message: `Le compte  ${compteId} a été supprimé.` });
+        res
+          .status(204)
+          .json({ message: `Le compte  ${compteId} a été supprimé.` });
       } else {
         res.status(401).json({
           error: "Unauthorized request, not r account!",
         });
       }
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ erreur: "Erreur lors de la récupération" });
+  }
+};
+
+exports.update = async (req, res) => {
+  const { bankName, customName } = req.body;
+  try {
+    const newAccount = await Compte.findOneAndUpdate(
+      {
+        _id: req.params.id,
+        user: req.auth.userId,
+      },
+      {
+        bankName,
+        customName,
+      },
+      { returnDocument: "after" }
+    );
+
+    if (!newAccount) {
+      return res.status(404).json({ error: "compte non trouvé" });
+    } else {
+      res
+        .status(200)
+        .json({ message: `Le compte  ${req.params.id} a été modifie.`, newAccount });
     }
   } catch (error) {
     console.error(error);
