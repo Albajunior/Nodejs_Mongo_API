@@ -4,8 +4,8 @@ const transactionCtrl = require("../controllers/transaction");
 
 const auth = require("../middleware/auth.js")
 
-router.post('/',auth, transactionCtrl.create);
-router.get('/',auth, transactionCtrl.readAll);
+router.post('/:accountId',auth, transactionCtrl.create);
+router.get('/:accountId',auth, transactionCtrl.readAll);
 // router.delete('/delete/:id', auth, transactionCtrl.delete);
 // router.put('/update/:id', auth, transactionCtrl.update);
 

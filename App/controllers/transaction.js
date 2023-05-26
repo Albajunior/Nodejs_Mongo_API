@@ -9,7 +9,7 @@ exports.create = async (req, res) => {
       paymentDate: Date.now(),
       paymentMethod: req.body.paymentMethod,
       category: req.body.category_id,
-      accountId: req.body.accountId,
+      accountId: req.param.accountId,
     };
     const transaction = new Transaction(payload);
     await transaction.save();
@@ -22,7 +22,7 @@ exports.create = async (req, res) => {
 
 exports.readAll = async (req, res) => {
   try {
-    const transaction = await Transaction.find({});
+    const transaction = await Transaction.find({ accountId: req.param.accountId });
     res.status(200).json(transaction);
   } catch (error) {
     console.error(error);

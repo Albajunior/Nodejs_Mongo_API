@@ -19,7 +19,7 @@ exports.createCompte = async (req, res) => {
 
 exports.readAll = async (req, res) => {
   try {
-    const compte = await Compte.find({});
+    const compte = await Compte.find({ user: req.auth.userId });
     res.status(200).json(compte);
   } catch (error) {
     console.error(error);
